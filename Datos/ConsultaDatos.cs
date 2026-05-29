@@ -118,5 +118,46 @@ namespace Datos
                 throw;
             }
         }
+
+        //Filtro de busqueda
+        public DataTable FiltrarHistorialAvanzado(string paciente, string estado, DateTime fecha, bool filtrarPorFecha)
+        {
+            DataTable tabla = new DataTable();
+
+            string query = "SELECT C.id_cita AS [ID Cita], " +
+                           "(P.nombre_paciente + ' ' + P.apellido_paciente) AS Paciente, " +
+                           "C.fecha_cita AS [Fecha], C.hora_cita AS [Hora], " +
+                           "C.motivo_consulta AS [Motivo], C.estado_consulta AS [Estado] " +
+                           "FROM tb_citas C " +
+                           "INNER JOIN tb_pacientes P ON C.id_paciente = P.id_paciente " +
+                           "WHERE (@paciente = '' OR P.nombre_paciente LIKE @paciente OR P.apellido_paciente LIKE @paciente) " +
+                           "  AND (@estado = 'Todos' OR @estado = '' OR C.estado_consulta = @estado) " +
+                           "  AND (@filtrarFecha = 0 OR CAST(C.fecha_cita AS DATE) = CAST(@fecha AS DATE)) " +
+                           "ORDER BY C.fecha_cita DESC, C.hora_cita DESC";
+            try
+            {
+                using (SqlConnection con = conexion.LeerConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        // Configuramos los parámetros de forma segura contra inyección SQL
+                        cmd.Parameters.AddWithValue("@paciente", string.IsNullOrEmpty(paciente) ? "" : "%" + paciente + "%");
+                        cmd.Parameters.AddWithValue("@estado", string.IsNullOrEmpty(estado) ? "Todos" : estado);
+                        cmd.Parameters.AddWithValue("@fecha", fecha);
+                        cmd.Parameters.AddWithValue("@filtrarFecha", filtrarPorFecha ? 1 : 0);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(tabla);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return tabla;
+        }
     }
 }
