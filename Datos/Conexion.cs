@@ -6,7 +6,7 @@ namespace Datos
 {
     public class Conexion
     {
-        private readonly string cadenaConexion = "Server=localhost\\Hardvest;Database=SCO;Trusted_Connection=True;TrustServerCertificate=True;";
+        private readonly string cadenaConexion = "Server=.;Database=SCO;Trusted_Connection=True;TrustServerCertificate=True;";
 
         public SqlConnection LeerConexion()
         {

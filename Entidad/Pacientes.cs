@@ -1,4 +1,6 @@
-﻿namespace Entidad
+﻿using System;
+
+namespace Entidad
 {
     public class Pacientes
     {

@@ -240,11 +240,16 @@
             // 
             // tbPaciente
             // 
+            this.tbPaciente.AllowUserToAddRows = false;
+            this.tbPaciente.AllowUserToDeleteRows = false;
+            this.tbPaciente.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.tbPaciente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tbPaciente.Location = new System.Drawing.Point(349, 85);
             this.tbPaciente.Name = "tbPaciente";
+            this.tbPaciente.ReadOnly = true;
             this.tbPaciente.Size = new System.Drawing.Size(470, 317);
             this.tbPaciente.TabIndex = 1;
+            this.tbPaciente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tbPaciente_CellClick);
             this.tbPaciente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tbPaciente_CellContentClick);
             // 
             // label7
@@ -265,6 +270,7 @@
             this.comboBoxBuscarPacienteApellido.Size = new System.Drawing.Size(325, 21);
             this.comboBoxBuscarPacienteApellido.TabIndex = 13;
             this.comboBoxBuscarPacienteApellido.SelectedIndexChanged += new System.EventHandler(this.comboBoxBuscarPacienteApellido_SelectedIndexChanged);
+            this.comboBoxBuscarPacienteApellido.TextChanged += new System.EventHandler(this.comboBoxBuscarPacienteApellido_TextChanged);
             // 
             // frmPacientes
             // 

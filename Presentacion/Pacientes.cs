@@ -60,6 +60,7 @@ namespace Presentacion
 
                 LeerPacientesGrid();
                 LimpiarCampos();
+                CargarApellidos();
             }
             catch (Exception ex)
             {
@@ -131,6 +132,16 @@ namespace Presentacion
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                string.IsNullOrWhiteSpace(txtApellido.Text) ||
+                string.IsNullOrWhiteSpace(txtTelefono.Text) ||
+                string.IsNullOrWhiteSpace(txtCorreo.Text))
+            {
+                MessageBox.Show("Por favor, complete todos los campos.",
+                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 Pacientes pacienteEditado = new Pacientes()
@@ -150,6 +161,7 @@ namespace Presentacion
 
                 LeerPacientesGrid();
                 LimpiarCampos();
+                CargarApellidos();
             }
             catch (Exception ex)
             {
@@ -167,14 +179,14 @@ namespace Presentacion
             {
                 DataGridViewRow fila = tbPaciente.Rows[e.RowIndex];
 
-                idPacienteSeleccionado = Convert.ToInt32(fila.Cells["id_paciente"].Value);
+                idPacienteSeleccionado = Convert.ToInt32(fila.Cells["ID"].Value);
 
-                txtNombre.Text = fila.Cells["nombre_paciente"].Value.ToString();
-                txtApellido.Text = fila.Cells["apellido_paciente"].Value.ToString();
-                txtTelefono.Text = fila.Cells["telefono_paciente"].Value.ToString();
-                txtCorreo.Text = fila.Cells["correo_paciente"].Value.ToString();
-                dateTimeFechaNacimiento.Value = Convert.ToDateTime(fila.Cells["fecha_nacimiento_paciente"].Value);
-                txtNotasMedicas.Text = fila.Cells["notas_medicas_paciente"].Value.ToString();
+                txtNombre.Text = fila.Cells["Nombre"].Value.ToString();
+                txtApellido.Text = fila.Cells["Apellido"].Value.ToString();
+                txtTelefono.Text = fila.Cells["Teléfono"].Value.ToString();
+                txtCorreo.Text = fila.Cells["Correo"].Value.ToString();
+                dateTimeFechaNacimiento.Value = Convert.ToDateTime(fila.Cells["F. Nacimiento"].Value);
+                txtNotasMedicas.Text = fila.Cells["Notas Médicas"].Value.ToString();
             }
 
         }
@@ -201,6 +213,8 @@ namespace Presentacion
 
                     LeerPacientesGrid();
                     LimpiarCampos();
+                    CargarApellidos();
+
                 }
                 catch (Exception ex)
                 {
@@ -223,20 +237,23 @@ namespace Presentacion
         {
             try
             {
-                string textoBusqueda = comboBoxBuscarPacienteApellido.Text.Trim();
+                if (tbPaciente.DataSource is DataTable dt)
+                {
+                    string textoBusqueda = comboBoxBuscarPacienteApellido.Text.Trim();
 
-                if (string.IsNullOrEmpty(textoBusqueda) || textoBusqueda == "-- Mostrar Todos --")
-                {
-                    LeerPacientesGrid();
-                }
-                else
-                {
-                    tbPaciente.DataSource = objetoDatos.BuscarPacientesPorApellido(textoBusqueda);
+                    if (string.IsNullOrEmpty(textoBusqueda) || textoBusqueda == "-- Mostrar Todos --")
+                    {
+                        dt.DefaultView.RowFilter = "";
+                    }
+                    else
+                    {
+                        dt.DefaultView.RowFilter = $"Apellido LIKE '%{textoBusqueda}%'";
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error al realizar la búsqueda: " + ex.Message,
+                MessageBox.Show("Ocurrió un error al realizar la búsqueda: " + ex.Message,
                                 "Error de Filtrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
