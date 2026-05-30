@@ -1,14 +1,16 @@
-﻿using System;
+﻿using Datos;
+using Entidad;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Datos;
-using Entidad;
 
 namespace Presentacion
 {
@@ -31,6 +33,23 @@ namespace Presentacion
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
+
+            if (!string.IsNullOrWhiteSpace(txtCorreo.Text) && !CorreoValido(txtCorreo.Text))
+            {
+                MessageBox.Show("Por favor, introduce una dirección de correo electrónico válida (ejemplo: usuario@correo.com).",
+                                "Correo Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCorreo.Focus();
+                return;
+            }
+
+            if (!TelefonoValido(txtTelefono.Text))
+            {
+                MessageBox.Show("El número de teléfono debe contener exactamente los 8 dígitos requeridos.",
+                                "Teléfono Incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTelefono.Focus();
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtApellido.Text) ||
                 string.IsNullOrWhiteSpace(txtTelefono.Text) ||
@@ -98,6 +117,7 @@ namespace Presentacion
             txtNotasMedicas.Clear();
 
             txtNombre.Focus();
+            btnGuardarPaciente.Enabled = true;
         }
 
         private void CargarApellidos()
@@ -108,7 +128,7 @@ namespace Presentacion
 
                 comboBoxBuscarPacienteApellido.Items.Clear();
 
-                comboBoxBuscarPacienteApellido.Items.Add("-- Mostrar Todos --");
+                comboBoxBuscarPacienteApellido.Items.Add("Mostrar Todos");
 
                 foreach (DataRow fila in dt.Rows)
                 {
@@ -125,6 +145,22 @@ namespace Presentacion
 
         private void btnActualizarPaciente_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(txtCorreo.Text) && !CorreoValido(txtCorreo.Text))
+            {
+                MessageBox.Show("Por favor, introduce una dirección de correo electrónico válida (ejemplo: usuario@correo.com).",
+                                "Correo Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCorreo.Focus();
+                return; 
+            }
+
+            if (!TelefonoValido(txtTelefono.Text))
+            {
+                MessageBox.Show("El número de teléfono debe contener exactamente los 8 dígitos requeridos.",
+                                "Teléfono Incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTelefono.Focus();
+                return; 
+            }
+
             if (idPacienteSeleccionado == 0)
             {
                 MessageBox.Show("Seleccione un paciente de la tabla para poder modificarlo.",
@@ -187,6 +223,8 @@ namespace Presentacion
                 txtCorreo.Text = fila.Cells["Correo"].Value.ToString();
                 dateTimeFechaNacimiento.Value = Convert.ToDateTime(fila.Cells["F. Nacimiento"].Value);
                 txtNotasMedicas.Text = fila.Cells["Notas Médicas"].Value.ToString();
+
+                btnGuardarPaciente.Enabled = false;
             }
 
         }
@@ -257,5 +295,36 @@ namespace Presentacion
                                 "Error de Filtrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; 
+            }
+        }
+
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool CorreoValido(string email)
+        {
+            string expresion = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, expresion);
+        }
+
+        private bool TelefonoValido(string telefono)
+        {
+            string soloNumeros = telefono.Replace("-", "").Replace(" ", "").Trim();
+
+            return soloNumeros.Length == 8 && soloNumeros.All(char.IsDigit);
+        }
+
+
     }
 }

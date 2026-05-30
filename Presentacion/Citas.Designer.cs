@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxBuscarPaciente = new System.Windows.Forms.ComboBox();
             this.btnLimpiarDatosCita = new FontAwesome.Sharp.IconButton();
             this.btnEliminarCita = new FontAwesome.Sharp.IconButton();
             this.btnActualizarCita = new FontAwesome.Sharp.IconButton();
@@ -41,24 +39,16 @@
             this.txtMotivoCita = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxHora = new System.Windows.Forms.ComboBox();
-            this.DateTimeFecha = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeFechaCita = new System.Windows.Forms.DateTimePicker();
             this.tbCitas = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBoxPaciente = new System.Windows.Forms.ComboBox();
+            this.comboBoxHora = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBoxBuscarCitaApellido = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbCitas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(182, 388);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(79, 19);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "Buscar cita:";
             // 
             // label1
             // 
@@ -69,16 +59,7 @@
             this.label1.Size = new System.Drawing.Size(63, 19);
             this.label1.TabIndex = 3;
             this.label1.Text = "Paciente:";
-            // 
-            // comboBoxBuscarPaciente
-            // 
-            this.comboBoxBuscarPaciente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBoxBuscarPaciente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxBuscarPaciente.FormattingEnabled = true;
-            this.comboBoxBuscarPaciente.Location = new System.Drawing.Point(281, 389);
-            this.comboBoxBuscarPaciente.Name = "comboBoxBuscarPaciente";
-            this.comboBoxBuscarPaciente.Size = new System.Drawing.Size(319, 21);
-            this.comboBoxBuscarPaciente.TabIndex = 18;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnLimpiarDatosCita
             // 
@@ -87,13 +68,14 @@
             this.btnLimpiarDatosCita.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnLimpiarDatosCita.IconSize = 25;
             this.btnLimpiarDatosCita.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLimpiarDatosCita.Location = new System.Drawing.Point(476, 305);
+            this.btnLimpiarDatosCita.Location = new System.Drawing.Point(621, 204);
             this.btnLimpiarDatosCita.Name = "btnLimpiarDatosCita";
             this.btnLimpiarDatosCita.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnLimpiarDatosCita.Size = new System.Drawing.Size(124, 29);
             this.btnLimpiarDatosCita.TabIndex = 13;
             this.btnLimpiarDatosCita.Text = "Limpiar";
             this.btnLimpiarDatosCita.UseVisualStyleBackColor = true;
+            this.btnLimpiarDatosCita.Click += new System.EventHandler(this.btnLimpiarDatosCita_Click);
             // 
             // btnEliminarCita
             // 
@@ -102,12 +84,13 @@
             this.btnEliminarCita.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnEliminarCita.IconSize = 25;
             this.btnEliminarCita.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminarCita.Location = new System.Drawing.Point(332, 305);
+            this.btnEliminarCita.Location = new System.Drawing.Point(621, 147);
             this.btnEliminarCita.Name = "btnEliminarCita";
             this.btnEliminarCita.Size = new System.Drawing.Size(124, 29);
             this.btnEliminarCita.TabIndex = 12;
             this.btnEliminarCita.Text = "Eliminar";
             this.btnEliminarCita.UseVisualStyleBackColor = true;
+            this.btnEliminarCita.Click += new System.EventHandler(this.btnEliminarCita_Click);
             // 
             // btnActualizarCita
             // 
@@ -116,12 +99,13 @@
             this.btnActualizarCita.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnActualizarCita.IconSize = 25;
             this.btnActualizarCita.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActualizarCita.Location = new System.Drawing.Point(180, 305);
+            this.btnActualizarCita.Location = new System.Drawing.Point(621, 89);
             this.btnActualizarCita.Name = "btnActualizarCita";
             this.btnActualizarCita.Size = new System.Drawing.Size(124, 29);
             this.btnActualizarCita.TabIndex = 11;
             this.btnActualizarCita.Text = "Actualizar";
             this.btnActualizarCita.UseVisualStyleBackColor = true;
+            this.btnActualizarCita.Click += new System.EventHandler(this.btnActualizarCita_Click);
             // 
             // btnGuardarCita
             // 
@@ -130,12 +114,13 @@
             this.btnGuardarCita.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarCita.IconSize = 25;
             this.btnGuardarCita.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarCita.Location = new System.Drawing.Point(29, 305);
+            this.btnGuardarCita.Location = new System.Drawing.Point(621, 34);
             this.btnGuardarCita.Name = "btnGuardarCita";
             this.btnGuardarCita.Size = new System.Drawing.Size(124, 29);
             this.btnGuardarCita.TabIndex = 10;
             this.btnGuardarCita.Text = "Guardar";
             this.btnGuardarCita.UseVisualStyleBackColor = true;
+            this.btnGuardarCita.Click += new System.EventHandler(this.btnGuardarCita_Click);
             // 
             // comboBoxEstado
             // 
@@ -195,35 +180,31 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Hora:";
             // 
-            // comboBoxHora
+            // dateTimeFechaCita
             // 
-            this.comboBoxHora.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBoxHora.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxHora.FormattingEnabled = true;
-            this.comboBoxHora.Location = new System.Drawing.Point(422, 84);
-            this.comboBoxHora.Name = "comboBoxHora";
-            this.comboBoxHora.Size = new System.Drawing.Size(167, 23);
-            this.comboBoxHora.TabIndex = 2;
-            // 
-            // DateTimeFecha
-            // 
-            this.DateTimeFecha.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DateTimeFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateTimeFecha.Location = new System.Drawing.Point(116, 85);
-            this.DateTimeFecha.Name = "DateTimeFecha";
-            this.DateTimeFecha.Size = new System.Drawing.Size(198, 23);
-            this.DateTimeFecha.TabIndex = 1;
+            this.dateTimeFechaCita.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dateTimeFechaCita.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimeFechaCita.Location = new System.Drawing.Point(116, 85);
+            this.dateTimeFechaCita.Name = "dateTimeFechaCita";
+            this.dateTimeFechaCita.Size = new System.Drawing.Size(198, 23);
+            this.dateTimeFechaCita.TabIndex = 1;
+            this.dateTimeFechaCita.ValueChanged += new System.EventHandler(this.dateTimeFechaCita_ValueChanged);
             // 
             // tbCitas
             // 
+            this.tbCitas.AllowUserToAddRows = false;
+            this.tbCitas.AllowUserToDeleteRows = false;
             this.tbCitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tbCitas.Location = new System.Drawing.Point(160, 416);
+            this.tbCitas.Location = new System.Drawing.Point(109, 397);
             this.tbCitas.Name = "tbCitas";
-            this.tbCitas.Size = new System.Drawing.Size(688, 126);
+            this.tbCitas.ReadOnly = true;
+            this.tbCitas.Size = new System.Drawing.Size(751, 167);
             this.tbCitas.TabIndex = 16;
+            this.tbCitas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tbCitas_CellClick);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBoxHora);
             this.groupBox1.Controls.Add(this.btnLimpiarDatosCita);
             this.groupBox1.Controls.Add(this.btnEliminarCita);
             this.groupBox1.Controls.Add(this.btnActualizarCita);
@@ -235,26 +216,56 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.comboBoxHora);
-            this.groupBox1.Controls.Add(this.DateTimeFecha);
+            this.groupBox1.Controls.Add(this.dateTimeFechaCita);
             this.groupBox1.Controls.Add(this.comboBoxPaciente);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(169, 23);
+            this.groupBox1.Location = new System.Drawing.Point(109, 23);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(630, 346);
+            this.groupBox1.Size = new System.Drawing.Size(751, 294);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Programacion de citas";
             // 
             // comboBoxPaciente
             // 
+            this.comboBoxPaciente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxPaciente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxPaciente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBoxPaciente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPaciente.FormattingEnabled = true;
             this.comboBoxPaciente.Location = new System.Drawing.Point(118, 32);
             this.comboBoxPaciente.Name = "comboBoxPaciente";
             this.comboBoxPaciente.Size = new System.Drawing.Size(295, 23);
             this.comboBoxPaciente.TabIndex = 0;
+            // 
+            // comboBoxHora
+            // 
+            this.comboBoxHora.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxHora.FormattingEnabled = true;
+            this.comboBoxHora.Location = new System.Drawing.Point(414, 85);
+            this.comboBoxHora.Name = "comboBoxHora";
+            this.comboBoxHora.Size = new System.Drawing.Size(185, 23);
+            this.comboBoxHora.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(105, 342);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(161, 19);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Buscar cita por apellidos:";
+            // 
+            // comboBoxBuscarCitaApellido
+            // 
+            this.comboBoxBuscarCitaApellido.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxBuscarCitaApellido.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxBuscarCitaApellido.FormattingEnabled = true;
+            this.comboBoxBuscarCitaApellido.Location = new System.Drawing.Point(284, 340);
+            this.comboBoxBuscarCitaApellido.Name = "comboBoxBuscarCitaApellido";
+            this.comboBoxBuscarCitaApellido.Size = new System.Drawing.Size(258, 21);
+            this.comboBoxBuscarCitaApellido.TabIndex = 17;
+            this.comboBoxBuscarCitaApellido.SelectedIndexChanged += new System.EventHandler(this.comboBoxBuscarCitaApellido_SelectedIndexChanged);
             // 
             // frmCitas
             // 
@@ -262,12 +273,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(1003, 567);
+            this.Controls.Add(this.comboBoxBuscarCitaApellido);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBoxBuscarPaciente);
             this.Controls.Add(this.tbCitas);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmCitas";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.frmCitas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tbCitas)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -277,10 +289,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBoxBuscarPaciente;
         private FontAwesome.Sharp.IconButton btnLimpiarDatosCita;
         private FontAwesome.Sharp.IconButton btnEliminarCita;
         private FontAwesome.Sharp.IconButton btnActualizarCita;
@@ -291,10 +300,12 @@
         private System.Windows.Forms.RichTextBox txtMotivoCita;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBoxHora;
-        private System.Windows.Forms.DateTimePicker DateTimeFecha;
+        private System.Windows.Forms.DateTimePicker dateTimeFechaCita;
         private System.Windows.Forms.DataGridView tbCitas;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox comboBoxPaciente;
+        private System.Windows.Forms.ComboBox comboBoxHora;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBoxBuscarCitaApellido;
     }
 }

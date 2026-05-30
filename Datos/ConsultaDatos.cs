@@ -17,12 +17,125 @@ namespace Datos
         public DataTable ListarCitas()
         {
             DataTable tabla = new DataTable();
-            string query = "SELECT C.id_cita AS ID, (P.nombre_paciente + ' ' + P.apellido_paciente) AS Paciente, " +
-                           "C.fecha_cita AS Fecha, C.hora_cita AS Hora, C.motivo_consulta AS Motivo, C.estado_consulta AS Estado, " +
-                           "C.id_paciente AS IdPaciente " +
+            string query = "SELECT C.id_cita, (P.nombre_paciente + ' ' + P.apellido_paciente) AS Paciente, " +
+                           "C.fecha_cita, C.hora_cita, C.motivo_consulta, C.estado_consulta, C.id_paciente " +
                            "FROM tb_citas C " +
                            "INNER JOIN tb_pacientes P ON C.id_paciente = P.id_paciente " +
                            "ORDER BY C.fecha_cita DESC, C.hora_cita DESC";
+            try
+            {
+                using (SqlConnection con = conexion.LeerConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(tabla);
+                        }
+                    }
+                }
+            }
+            catch (Exception) { throw; }
+            return tabla;
+        }
+
+        //Metodo INSERT
+        public bool InsertarCita(int idPaciente, DateTime fecha, TimeSpan hora, string estado, string motivo)
+        {
+            string query = "INSERT INTO tb_citas (id_paciente, fecha_cita, hora_cita, estado_consulta, motivo_consulta) " +
+                           "VALUES (@idPaciente, @fecha, @hora, @estado, @motivo)";
+            try
+            {
+                using (SqlConnection con = conexion.LeerConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@idPaciente", idPaciente);
+                        cmd.Parameters.AddWithValue("@fecha", fecha.Date);
+                        cmd.Parameters.AddWithValue("@hora", hora);
+                        cmd.Parameters.AddWithValue("@estado", estado);
+                        cmd.Parameters.AddWithValue("@motivo", motivo);
+
+                        if (con.State == ConnectionState.Closed)
+                        {
+                            con.Open();
+                        }
+
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool ActualizarCita(int id, int idPaciente, DateTime fecha, TimeSpan hora, string estado, string motivo)
+        {
+            string query = "UPDATE tb_citas SET id_paciente=@idPaciente, fecha_cita=@fecha, hora_cita=@hora, " +
+                           "motivo_consulta=@motivo, estado_consulta=@estado WHERE id_cita=@id";
+            try
+            {
+                using (SqlConnection con = conexion.LeerConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        // Asignamos las variables directamente
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.Parameters.AddWithValue("@idPaciente", idPaciente);
+                        cmd.Parameters.AddWithValue("@fecha", fecha.Date); 
+                        cmd.Parameters.AddWithValue("@hora", hora);
+                        cmd.Parameters.AddWithValue("@motivo", motivo);
+                        cmd.Parameters.AddWithValue("@estado", estado);
+
+                        if (con.State == ConnectionState.Closed)
+                        {
+                            con.Open();
+                        }
+
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        //Metodo DELETE
+        public bool EliminarCita(int idCita)
+        {
+            string query = "DELETE FROM tb_citas WHERE id_cita = @id";
+            try
+            {
+                using (SqlConnection con = conexion.LeerConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", idCita);
+                        if (con.State == ConnectionState.Closed)
+                        {
+                            con.Open();
+                        }
+
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        //Metodos de busqueda con apellido y nombres
+        public DataTable ObtenerPacientes()
+        {
+            DataTable tabla = new DataTable();
+            string query = "SELECT id_paciente, apellido_paciente + ', ' + nombre_paciente AS NombreCompleto FROM tb_pacientes ORDER BY apellido_paciente ASC";
+
             try
             {
                 using (SqlConnection con = conexion.LeerConexion())
@@ -43,24 +156,73 @@ namespace Datos
             return tabla;
         }
 
-        //Metodo INSERT
-        public void InsertarCita(Citas cita)
+        public DataTable BuscarCitasPorApellido(string apellido)
         {
-            string query = "INSERT INTO tb_citas (id_paciente, fecha_cita, hora_cita, motivo_consulta, estado_consulta) " +
-                           "VALUES (@idPaciente, @fecha, @hora, @motivo, @estado)";
+            DataTable tabla = new DataTable();
+            string query = "SELECT c.id_cita, (p.nombre_paciente + ' ' + p.apellido_paciente) AS Paciente, " +
+                           "c.fecha_cita, c.hora_cita, c.motivo_consulta, c.estado_consulta, c.id_paciente " +
+                           "FROM tb_citas c " +
+                           "INNER JOIN tb_pacientes p ON c.id_paciente = p.id_paciente " +
+                           "WHERE p.apellido_paciente LIKE @apellido";
             try
             {
                 using (SqlConnection con = conexion.LeerConexion())
                 {
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
-                        cmd.Parameters.AddWithValue("@idPaciente", cita.id_paciente);
-                        cmd.Parameters.AddWithValue("@fecha", cita.fecha_cita);
-                        cmd.Parameters.AddWithValue("@hora", cita.hora_cita);
-                        cmd.Parameters.AddWithValue("@motivo", cita.motivo_consulta);
-                        cmd.Parameters.AddWithValue("@estado", cita.estado_consulta);
+                        cmd.Parameters.AddWithValue("@apellido", "%" + apellido + "%");
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(tabla);
+                        }
+                    }
+                }
+            }
+            catch (Exception) { throw; }
+            return tabla;
+        }
 
-                        cmd.ExecuteNonQuery();
+        public DataTable ObtenerApellidosConCitas()
+        {
+            DataTable tabla = new DataTable();
+            string query = "SELECT DISTINCT p.apellido_paciente FROM tb_citas c " +
+                           "INNER JOIN tb_pacientes p ON c.id_paciente = p.id_paciente " +
+                           "ORDER BY p.apellido_paciente ASC";
+            try
+            {
+                using (SqlConnection con = conexion.LeerConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(tabla);
+                        }
+                    }
+                }
+            }
+            catch (Exception) { throw; }
+            return tabla;
+        }
+
+        //Metodo de Horas Ocupadas
+        public DataTable ObtenerHorasOcupadasPorFecha(DateTime fecha)
+        {
+            DataTable tabla = new DataTable();
+            string query = "SELECT hora_cita FROM tb_citas WHERE CAST(fecha_cita AS DATE) = @fecha AND estado_consulta != 'Cancelada'";
+
+            try
+            {
+                using (SqlConnection con = conexion.LeerConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@fecha", fecha.Date);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(tabla);
+                        }
                     }
                 }
             }
@@ -68,58 +230,10 @@ namespace Datos
             {
                 throw;
             }
+            return tabla;
         }
 
-        //Metodo UPDATE
-        public void ActualizarCita(Citas cita)
-        {
-            string query = "UPDATE tb_citas SET id_paciente=@idPaciente, fecha_cita=@fecha, hora_cita=@hora, " +
-                           "motivo_consulta=@motivo, estado_consulta=@estado WHERE id_cita=@id";
-            try
-            {
-                using (SqlConnection con = conexion.LeerConexion())
-                {
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@id", cita.id_cita);
-                        cmd.Parameters.AddWithValue("@idPaciente", cita.id_paciente);
-                        cmd.Parameters.AddWithValue("@fecha", cita.fecha_cita);
-                        cmd.Parameters.AddWithValue("@hora", cita.hora_cita);
-                        cmd.Parameters.AddWithValue("@motivo", cita.motivo_consulta);
-                        cmd.Parameters.AddWithValue("@estado", cita.estado_consulta);
-
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        //Metodo DELETE
-        public void EliminarCita(int idCita)
-        {
-            string query = "DELETE FROM tb_citas WHERE id_cita = @id";
-            try
-            {
-                using (SqlConnection con = conexion.LeerConexion())
-                {
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@id", idCita);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        //Filtro de busqueda
+        //Filtro de busqueda para historial de citas
         public DataTable FiltrarHistorialAvanzado(string paciente, string estado, DateTime fecha, bool filtrarPorFecha)
         {
             DataTable tabla = new DataTable();
@@ -140,7 +254,6 @@ namespace Datos
                 {
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
-                        // Configuramos los parámetros de forma segura contra inyección SQL
                         cmd.Parameters.AddWithValue("@paciente", string.IsNullOrEmpty(paciente) ? "" : "%" + paciente + "%");
                         cmd.Parameters.AddWithValue("@estado", string.IsNullOrEmpty(estado) ? "Todos" : estado);
                         cmd.Parameters.AddWithValue("@fecha", fecha);
