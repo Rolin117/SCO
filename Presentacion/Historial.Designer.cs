@@ -131,7 +131,7 @@
             // tbHistorial
             // 
             this.tbHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tbHistorial.Location = new System.Drawing.Point(34, 295);
+            this.tbHistorial.Location = new System.Drawing.Point(93, 295);
             this.tbHistorial.Name = "tbHistorial";
             this.tbHistorial.Size = new System.Drawing.Size(774, 217);
             this.tbHistorial.TabIndex = 9;
@@ -147,7 +147,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.groupBox1.Location = new System.Drawing.Point(20, 25);
+            this.groupBox1.Location = new System.Drawing.Point(79, 25);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(804, 256);
             this.groupBox1.TabIndex = 10;
@@ -159,7 +159,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.ClientSize = new System.Drawing.Size(845, 567);
+            this.ClientSize = new System.Drawing.Size(1003, 567);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tbHistorial);
             this.Name = "frmHistorial";

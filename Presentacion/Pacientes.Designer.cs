@@ -73,7 +73,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.groupBox1.Location = new System.Drawing.Point(12, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(303, 558);
+            this.groupBox1.Size = new System.Drawing.Size(352, 558);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Control de pacientes";
@@ -158,7 +158,7 @@
             // 
             this.txtCorreo.Location = new System.Drawing.Point(76, 187);
             this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Size = new System.Drawing.Size(221, 26);
+            this.txtCorreo.Size = new System.Drawing.Size(254, 26);
             this.txtCorreo.TabIndex = 9;
             // 
             // txtTelefono
@@ -174,14 +174,14 @@
             // 
             this.txtApellido.Location = new System.Drawing.Point(91, 75);
             this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(206, 26);
+            this.txtApellido.Size = new System.Drawing.Size(239, 26);
             this.txtApellido.TabIndex = 7;
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(91, 32);
+            this.txtNombre.Location = new System.Drawing.Point(91, 33);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(206, 26);
+            this.txtNombre.Size = new System.Drawing.Size(239, 26);
             this.txtNombre.TabIndex = 6;
             // 
             // label6
@@ -244,10 +244,10 @@
             this.tbPaciente.AllowUserToDeleteRows = false;
             this.tbPaciente.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.tbPaciente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tbPaciente.Location = new System.Drawing.Point(349, 85);
+            this.tbPaciente.Location = new System.Drawing.Point(385, 85);
             this.tbPaciente.Name = "tbPaciente";
             this.tbPaciente.ReadOnly = true;
-            this.tbPaciente.Size = new System.Drawing.Size(470, 317);
+            this.tbPaciente.Size = new System.Drawing.Size(586, 440);
             this.tbPaciente.TabIndex = 1;
             this.tbPaciente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tbPaciente_CellClick);
             this.tbPaciente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tbPaciente_CellContentClick);
@@ -256,7 +256,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.label7.Location = new System.Drawing.Point(345, 43);
+            this.label7.Location = new System.Drawing.Point(386, 40);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(130, 19);
             this.label7.TabIndex = 12;
@@ -265,7 +265,7 @@
             // comboBoxBuscarPacienteApellido
             // 
             this.comboBoxBuscarPacienteApellido.FormattingEnabled = true;
-            this.comboBoxBuscarPacienteApellido.Location = new System.Drawing.Point(481, 44);
+            this.comboBoxBuscarPacienteApellido.Location = new System.Drawing.Point(522, 41);
             this.comboBoxBuscarPacienteApellido.Name = "comboBoxBuscarPacienteApellido";
             this.comboBoxBuscarPacienteApellido.Size = new System.Drawing.Size(325, 21);
             this.comboBoxBuscarPacienteApellido.TabIndex = 13;
@@ -277,7 +277,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.ClientSize = new System.Drawing.Size(845, 567);
+            this.ClientSize = new System.Drawing.Size(1003, 567);
             this.Controls.Add(this.comboBoxBuscarPacienteApellido);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.tbPaciente);

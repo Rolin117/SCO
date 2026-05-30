@@ -54,7 +54,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(107, 377);
+            this.label6.Location = new System.Drawing.Point(182, 388);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 19);
             this.label6.TabIndex = 17;
@@ -75,7 +75,7 @@
             this.comboBoxBuscarPaciente.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBoxBuscarPaciente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxBuscarPaciente.FormattingEnabled = true;
-            this.comboBoxBuscarPaciente.Location = new System.Drawing.Point(206, 378);
+            this.comboBoxBuscarPaciente.Location = new System.Drawing.Point(281, 389);
             this.comboBoxBuscarPaciente.Name = "comboBoxBuscarPaciente";
             this.comboBoxBuscarPaciente.Size = new System.Drawing.Size(319, 21);
             this.comboBoxBuscarPaciente.TabIndex = 18;
@@ -217,9 +217,9 @@
             // tbCitas
             // 
             this.tbCitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tbCitas.Location = new System.Drawing.Point(94, 405);
+            this.tbCitas.Location = new System.Drawing.Point(160, 416);
             this.tbCitas.Name = "tbCitas";
-            this.tbCitas.Size = new System.Drawing.Size(625, 126);
+            this.tbCitas.Size = new System.Drawing.Size(688, 126);
             this.tbCitas.TabIndex = 16;
             // 
             // groupBox1
@@ -239,7 +239,7 @@
             this.groupBox1.Controls.Add(this.DateTimeFecha);
             this.groupBox1.Controls.Add(this.comboBoxPaciente);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(94, 12);
+            this.groupBox1.Location = new System.Drawing.Point(169, 23);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(630, 346);
             this.groupBox1.TabIndex = 15;
@@ -261,7 +261,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.ClientSize = new System.Drawing.Size(845, 567);
+            this.ClientSize = new System.Drawing.Size(1003, 567);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.comboBoxBuscarPaciente);
             this.Controls.Add(this.tbCitas);
