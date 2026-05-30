@@ -226,6 +226,16 @@
   <ItemGroup>
     <None Include="Resources\SCO icono.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Datos\Datos.csproj">
+      <Project>{bb35b401-4ef4-989e-18e9-c126b008feab}</Project>
+      <Name>Datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidad\Entidad.csproj">
+      <Project>{7b465ef7-1f8f-cd45-6874-e2663388de88}</Project>
+      <Name>Entidad</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -91,6 +91,7 @@
             this.btnLimpiarPaciente.TabIndex = 15;
             this.btnLimpiarPaciente.Text = "Limpiar";
             this.btnLimpiarPaciente.UseVisualStyleBackColor = true;
+            this.btnLimpiarPaciente.Click += new System.EventHandler(this.btnLimpiarPaciente_Click);
             // 
             // btnActualizarPaciente
             // 
@@ -105,6 +106,7 @@
             this.btnActualizarPaciente.TabIndex = 14;
             this.btnActualizarPaciente.Text = "Actualizar";
             this.btnActualizarPaciente.UseVisualStyleBackColor = true;
+            this.btnActualizarPaciente.Click += new System.EventHandler(this.btnActualizarPaciente_Click);
             // 
             // btnEliminarPaciente
             // 
@@ -119,6 +121,7 @@
             this.btnEliminarPaciente.TabIndex = 13;
             this.btnEliminarPaciente.Text = "Eliminar";
             this.btnEliminarPaciente.UseVisualStyleBackColor = true;
+            this.btnEliminarPaciente.Click += new System.EventHandler(this.btnEliminarPaciente_Click);
             // 
             // btnGuardarPaciente
             // 
@@ -242,6 +245,7 @@
             this.tbPaciente.Name = "tbPaciente";
             this.tbPaciente.Size = new System.Drawing.Size(470, 317);
             this.tbPaciente.TabIndex = 1;
+            this.tbPaciente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tbPaciente_CellContentClick);
             // 
             // label7
             // 
@@ -260,6 +264,7 @@
             this.comboBoxBuscarPacienteApellido.Name = "comboBoxBuscarPacienteApellido";
             this.comboBoxBuscarPacienteApellido.Size = new System.Drawing.Size(325, 21);
             this.comboBoxBuscarPacienteApellido.TabIndex = 13;
+            this.comboBoxBuscarPacienteApellido.SelectedIndexChanged += new System.EventHandler(this.comboBoxBuscarPacienteApellido_SelectedIndexChanged);
             // 
             // frmPacientes
             // 
@@ -273,6 +278,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmPacientes";
             this.Text = "Pacientes";
+            this.Load += new System.EventHandler(this.frmPacientes_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPaciente)).EndInit();

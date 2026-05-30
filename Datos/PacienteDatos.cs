@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Datos
 {
-    internal class PacienteDatos
+    public class PacienteDatos
     {
 
         private Conexion conexion = new Conexion();
@@ -75,7 +75,7 @@ namespace Datos
         }
 
         //Metodo UPDATE
-        public void ActializarPaciente(Pacientes paciente)
+        public void ActualizarPaciente(Pacientes paciente)
         {
             string query = "UPDATE tb_pacientes SET nombre_paciente=@nombre, apellido_paciente=@apellido, telefono_paciente=@telefono, correo_paciente=@correo, fecha_nacimiento_paciente=@fecha, notas_medicas_paciente=@notas WHERE id_paciente=@id";
 
@@ -122,6 +122,61 @@ namespace Datos
             {
                 throw;
             }
+        }
+
+        //Metodos de busqueda
+        public DataTable BuscarPacientesPorApellido(string apellido)
+        {
+            DataTable tabla = new DataTable();
+            string query = "SELECT id_paciente, nombre_paciente, apellido_paciente, " +
+                           "telefono_paciente, correo_paciente, fecha_nacimiento_paciente, notas_medicas_paciente " +
+                           "FROM tb_pacientes " +
+                           "WHERE apellido_paciente LIKE @apellido";
+            try
+            {
+                using (SqlConnection con = conexion.LeerConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@apellido", "%" + apellido + "%");
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(tabla);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return tabla;
+        }
+
+        public DataTable ObtenerApellidos()
+        {
+            DataTable tabla = new DataTable();
+            string query = "SELECT DISTINCT apellido_paciente FROM tb_pacientes ORDER BY apellido_paciente ASC";
+
+            try
+            {
+                using (SqlConnection con = conexion.LeerConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(tabla);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return tabla;
         }
     }
 }

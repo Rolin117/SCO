@@ -9,7 +9,7 @@ using Entidad;
 
 namespace Datos
 {
-    internal class ConsultaDatos
+    public class ConsultaDatos
     {
         private Conexion conexion = new Conexion();
 
