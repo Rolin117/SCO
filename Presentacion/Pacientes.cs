@@ -89,6 +89,8 @@ namespace Presentacion
 
         private void frmPacientes_Load(object sender, EventArgs e)
         {
+            dateTimeFechaNacimiento.MaxDate = DateTime.Today;
+
             LeerPacientesGrid();
             LimpiarCampos();
             CargarApellidos();
@@ -113,7 +115,7 @@ namespace Presentacion
             txtApellido.Clear();
             txtTelefono.Clear();
             txtCorreo.Clear();
-            dateTimeFechaNacimiento.Value = DateTime.Now;
+            dateTimeFechaNacimiento.Value = DateTime.Today;
             txtNotasMedicas.Clear();
 
             txtNombre.Focus();

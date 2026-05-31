@@ -42,8 +42,8 @@
             this.dateTimeFechaCita = new System.Windows.Forms.DateTimePicker();
             this.tbCitas = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBoxPaciente = new System.Windows.Forms.ComboBox();
             this.comboBoxHora = new System.Windows.Forms.ComboBox();
+            this.comboBoxPaciente = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBoxBuscarCitaApellido = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbCitas)).BeginInit();
@@ -195,10 +195,10 @@
             this.tbCitas.AllowUserToAddRows = false;
             this.tbCitas.AllowUserToDeleteRows = false;
             this.tbCitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tbCitas.Location = new System.Drawing.Point(109, 397);
+            this.tbCitas.Location = new System.Drawing.Point(109, 388);
             this.tbCitas.Name = "tbCitas";
             this.tbCitas.ReadOnly = true;
-            this.tbCitas.Size = new System.Drawing.Size(751, 167);
+            this.tbCitas.Size = new System.Drawing.Size(745, 167);
             this.tbCitas.TabIndex = 16;
             this.tbCitas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tbCitas_CellClick);
             // 
@@ -226,6 +226,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Programacion de citas";
             // 
+            // comboBoxHora
+            // 
+            this.comboBoxHora.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxHora.FormattingEnabled = true;
+            this.comboBoxHora.Location = new System.Drawing.Point(414, 85);
+            this.comboBoxHora.Name = "comboBoxHora";
+            this.comboBoxHora.Size = new System.Drawing.Size(185, 23);
+            this.comboBoxHora.TabIndex = 14;
+            // 
             // comboBoxPaciente
             // 
             this.comboBoxPaciente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -236,15 +245,6 @@
             this.comboBoxPaciente.Name = "comboBoxPaciente";
             this.comboBoxPaciente.Size = new System.Drawing.Size(295, 23);
             this.comboBoxPaciente.TabIndex = 0;
-            // 
-            // comboBoxHora
-            // 
-            this.comboBoxHora.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxHora.FormattingEnabled = true;
-            this.comboBoxHora.Location = new System.Drawing.Point(414, 85);
-            this.comboBoxHora.Name = "comboBoxHora";
-            this.comboBoxHora.Size = new System.Drawing.Size(185, 23);
-            this.comboBoxHora.TabIndex = 14;
             // 
             // label6
             // 

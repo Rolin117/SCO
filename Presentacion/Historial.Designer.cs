@@ -141,10 +141,10 @@
             this.tbHistorial.AllowUserToAddRows = false;
             this.tbHistorial.AllowUserToDeleteRows = false;
             this.tbHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tbHistorial.Location = new System.Drawing.Point(102, 264);
+            this.tbHistorial.Location = new System.Drawing.Point(160, 262);
             this.tbHistorial.Name = "tbHistorial";
             this.tbHistorial.ReadOnly = true;
-            this.tbHistorial.Size = new System.Drawing.Size(763, 250);
+            this.tbHistorial.Size = new System.Drawing.Size(646, 250);
             this.tbHistorial.TabIndex = 9;
             // 
             // groupBox1
