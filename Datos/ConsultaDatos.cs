@@ -84,7 +84,7 @@ namespace Datos
                         // Asignamos las variables directamente
                         cmd.Parameters.AddWithValue("@id", id);
                         cmd.Parameters.AddWithValue("@idPaciente", idPaciente);
-                        cmd.Parameters.AddWithValue("@fecha", fecha.Date); 
+                        cmd.Parameters.AddWithValue("@fecha", fecha.Date);
                         cmd.Parameters.AddWithValue("@hora", hora);
                         cmd.Parameters.AddWithValue("@motivo", motivo);
                         cmd.Parameters.AddWithValue("@estado", estado);
@@ -244,7 +244,7 @@ namespace Datos
                            "C.motivo_consulta AS [Motivo], C.estado_consulta AS [Estado] " +
                            "FROM tb_citas C " +
                            "INNER JOIN tb_pacientes P ON C.id_paciente = P.id_paciente " +
-                           "WHERE (@paciente = '' OR P.nombre_paciente LIKE @paciente OR P.apellido_paciente LIKE @paciente) " +
+                           "WHERE (@paciente = '' OR (P.nombre_paciente + ' ' + P.apellido_paciente) LIKE @paciente) " +
                            "  AND (@estado = 'Todos' OR @estado = '' OR C.estado_consulta = @estado) " +
                            "  AND (@filtrarFecha = 0 OR CAST(C.fecha_cita AS DATE) = CAST(@fecha AS DATE)) " +
                            "ORDER BY C.fecha_cita DESC, C.hora_cita DESC";
@@ -255,8 +255,8 @@ namespace Datos
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
                         cmd.Parameters.AddWithValue("@paciente", string.IsNullOrEmpty(paciente) ? "" : "%" + paciente + "%");
-                        cmd.Parameters.AddWithValue("@estado", string.IsNullOrEmpty(estado) ? "Todos" : estado);
-                        cmd.Parameters.AddWithValue("@fecha", fecha);
+                        cmd.Parameters.AddWithValue("@estado", string.IsNullOrEmpty(estado) ? "Todos" : estado.Trim());
+                        cmd.Parameters.AddWithValue("@fecha", fecha.Date);
                         cmd.Parameters.AddWithValue("@filtrarFecha", filtrarPorFecha ? 1 : 0);
 
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))

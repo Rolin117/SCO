@@ -266,6 +266,8 @@
             // 
             // comboBoxBuscarPacienteApellido
             // 
+            this.comboBoxBuscarPacienteApellido.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxBuscarPacienteApellido.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxBuscarPacienteApellido.FormattingEnabled = true;
             this.comboBoxBuscarPacienteApellido.Location = new System.Drawing.Point(522, 41);
             this.comboBoxBuscarPacienteApellido.Name = "comboBoxBuscarPacienteApellido";

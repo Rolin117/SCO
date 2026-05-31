@@ -124,6 +124,8 @@ namespace Presentacion
         {
             try
             {
+                comboBoxBuscarPacienteApellido.TextChanged -= comboBoxBuscarPacienteApellido_TextChanged;
+
                 DataTable dt = objetoDatos.ObtenerApellidos();
 
                 comboBoxBuscarPacienteApellido.Items.Clear();
@@ -140,6 +142,10 @@ namespace Presentacion
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar el buscador de apellidos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                comboBoxBuscarPacienteApellido.TextChanged += comboBoxBuscarPacienteApellido_TextChanged;
             }
         }
 
@@ -273,6 +279,7 @@ namespace Presentacion
 
         private void comboBoxBuscarPacienteApellido_TextChanged(object sender, EventArgs e)
         {
+
             try
             {
                 if (tbPaciente.DataSource is DataTable dt)
