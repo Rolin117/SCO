@@ -122,7 +122,7 @@
             this.tituloSCO.AutoSize = true;
             this.tituloSCO.Font = new System.Drawing.Font("MS Reference Sans Serif", 34F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tituloSCO.ForeColor = System.Drawing.Color.SteelBlue;
-            this.tituloSCO.Location = new System.Drawing.Point(527, 406);
+            this.tituloSCO.Location = new System.Drawing.Point(461, 349);
             this.tituloSCO.Name = "tituloSCO";
             this.tituloSCO.Size = new System.Drawing.Size(124, 58);
             this.tituloSCO.TabIndex = 1;
@@ -132,7 +132,7 @@
             // 
             this.iconoSCO.Image = global::Presentacion.Properties.Resources.SCO_icono;
             this.iconoSCO.InitialImage = ((System.Drawing.Image)(resources.GetObject("iconoSCO.InitialImage")));
-            this.iconoSCO.Location = new System.Drawing.Point(343, 143);
+            this.iconoSCO.Location = new System.Drawing.Point(277, 86);
             this.iconoSCO.Name = "iconoSCO";
             this.iconoSCO.Size = new System.Drawing.Size(491, 333);
             this.iconoSCO.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

@@ -56,9 +56,9 @@
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(24, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 19);
+            this.label1.Size = new System.Drawing.Size(184, 19);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Paciente:";
+            this.label1.Text = "Buscar paciente por apellido:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnLimpiarDatosCita
@@ -241,7 +241,7 @@
             this.comboBoxPaciente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxPaciente.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBoxPaciente.FormattingEnabled = true;
-            this.comboBoxPaciente.Location = new System.Drawing.Point(118, 32);
+            this.comboBoxPaciente.Location = new System.Drawing.Point(214, 30);
             this.comboBoxPaciente.Name = "comboBoxPaciente";
             this.comboBoxPaciente.Size = new System.Drawing.Size(295, 23);
             this.comboBoxPaciente.TabIndex = 0;
